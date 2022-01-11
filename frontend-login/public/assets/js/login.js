@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded",function()
     console.log ("registro Cargado");
 
     let $form = document.querySelector("#signin");
-    let $msg = document.querySelector(".msg");
+    let $msg2 = document.querySelector(".msg2");
 
 
     $form.addEventListener("submit",function(e){
@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded",function()
         let datos = new FormData($form); // guardo  la información del formulario
         let datosParse = new  URLSearchParams(datos);
 
-        fetch ("http://yardsale.local/wp-json/plz/registro",
+        fetch ("http://yardsale.local/wp-json/plz/login",
         {
         method : "POST",
         body : datosParse
@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded",function()
         .then(res =>res.json())
         .then(json =>{
             console.log(json)
-            $msg.innerHTML = json?.msg;
+            $msg2.innerHTML = json;
         })
         .catch(err => {
             console.log('Hay un error: ${err}')

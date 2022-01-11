@@ -1,42 +1,40 @@
 <?php
 
-function plz_script_registro(){
-    wp_register_script("plz-registro", plugins_url( "../assets/js/registro.js", __FILE__ ) );
-    wp_enqueue_script("plz-registro");
+function plz_script_login(){
+    wp_register_script("plz-login", plugins_url( "../assets/js/login.js", __FILE__ ) );
+    wp_enqueue_script("plz-login");
 }
 
-add_action("wp_enqueue_scripts", "plz_script_registro");
+add_action("wp_enqueue_scripts", "plz_script_login");
 
-function plz_add_register_form() {
-    plz_script_registro(); 
+function plz_add_login_form() {
+    plz_script_login(); 
     $response = '
-    <div class="signin">
-    <div class="signin__container">
-        <h1 class="sigin__titulo">Register</h1>
-        <form class="signin__form" id="signin">
-            <div class="signin__name name--campo">
-                <label for="Name">Name</label>
-                <input name="name" type="text" id="Name">
-            </div>
-            <div class="signin__email name--campo">
-                <label for="email">Email</label>
-                <input name="email" type="email" id="email">
-            </div>
-            <div class="signin__pass name--campo">
-                <label for="password">Password</label>
-                <input name="password" type="password" id="password">
-            </div>
-            <div class="signin__submit">
-                <input type="submit" value="Create">
-            </div>
-            <div class="msg">texto equis</div>
-        </form>
-    </div>
-</div>
-';
+    <main class="signin">
+        <div class="signin__container">
+            <form class="signin__form" id="signin">
+                <div class="signin__email name--campo">
+                    <label for="email">Email address</label>
+                    <input name="email" type="email" id="email">
+                </div>
+                <div class="signin__pass name--campo">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" id="password">
+                </div>
+                <div class="signin__submit">
+                    <input type="submit" value="Log in">
+                </div>
+                <div class="signin_create-link">
+                    <a href="'.home_url("sing-up").'">Sign up</a>
+                </div>
+                <div class="msg2"> texto equis dos</div>
+            </form>
+        </div>
+    </main>
+    ';
 
 return $response;
 
 }
 
-add_shortcode("plz_registro","plz_add_register_form");
+add_shortcode("plz_login","plz_add_login_form");
