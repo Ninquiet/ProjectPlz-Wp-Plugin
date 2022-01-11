@@ -16,10 +16,25 @@
  * Domain Path:       /languages
  */
 
+define("PLZ_PATH",plugin_dir_path(__File__));
+
 //API REST
-require_once plugin_dir_path(__File__)."includes/API/api-registro.php";
-require_once plugin_dir_path(__FILE__)."includes/API/api-login.php";
+require_once PLZ_PATH."includes/API/api-registro.php";
+require_once PLZ_PATH."includes/API/api-login.php";
 
 //Shortcodes
-require_once plugin_dir_path(__FILE__)."public/shortcode/form-registro.php";
-require_once plugin_dir_path(__FILE__)."public/shortcode/form-login.php";
+require_once PLZ_PATH."public/shortcode/form-registro.php";
+require_once PLZ_PATH."public/shortcode/form-login.php";
+
+
+//  rol personalizado
+function plz_plugin_activar(){
+    add_role('cliente',"cliente","read_post");
+}
+
+function plz_plugin_desactivar(){
+    remove_role('cliente');
+}
+
+register_activation_hook(__FILE__,"plz_plugin_activar");
+register_deactivation_hook(__FILE__,"plz_plugin_desactivar");

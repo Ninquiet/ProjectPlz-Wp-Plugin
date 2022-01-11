@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded",function()
         let datos = new FormData($form); // guardo  la información del formulario
         let datosParse = new  URLSearchParams(datos);
 
-        fetch ("http://yardsale.local/wp-json/plz/registro",
+        fetch (`${plz.rest_url}/registro`,
         {
         method : "POST",
         body : datosParse
